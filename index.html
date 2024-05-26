@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    class Item {
+      constructor(name, stock, price) {
+        this.name = name;
+        this.stock = stock;
+        this.price = price;
+      }
+    }
+
+    let dbItem = [
+      new Item("Sepatu", 20, 85000),
+      new Item("Kaos", 15, 55000),
+      new Item("Jaket", 6, 105000),
+    ];
+    console.log(dbItem[0].name);
+    function showData(arr) {
+      const result = arr.map((arr, index) => {
+        return `${index + 1}. ${arr.name}, stoknya ${
+          arr.stock
+        }, Rp.${arr.price.toLocaleString()},-\n`;
+      });
+      return result.join("");
+    }
+
+    function pushData(nameInput, stockInput, priceInput) {
+      let addData = new Item(nameInput, stockInput, priceInput);
+      dbItem.push(addData);
+      return addData;
+    }
+
+    function removeData(arr, deleteIndex) {
+      arr.splice(deleteIndex - 1, 1);
+      const result = arr.map((arr, index) => {
+        return `${index + 1}. ${arr.name}, stoknya ${
+          arr.stock
+        }, Rp.${arr.price.toLocaleString()},-\n`;
+      });
+      result.splice(0, 0, "Hapus data berhasil✅:\n");
+      return result.join("");
+    }
+
+    let running = true;
+
+    while (running) {
+      let menu = prompt(
+        "Mulai manage data :\nA. Lihat data\nB. Tambah data\nC. Hapus data\nD. Update data\nE. Exit"
+      ).toUpperCase();
+      if (menu === "A") {
+        alert(showData(dbItem));
+      } else if (menu === "B") {
+        let nameInput = prompt("Masukkan nama barang:");
+        let stockInput = prompt("Masukkan stok:");
+        let priceInput = prompt("Masukkan harga:");
+        pushData(nameInput, stockInput, priceInput);
+        alert("Penambahan data berhasil✅:\n" + showData(dbItem));
+      } else if (menu === "C") {
+        let deleteIndex = parseInt(
+          prompt(`${showData(dbItem)}\nMasukkan no yang akan dihapus`)
+        );
+        alert(removeData(dbItem, deleteIndex));
+      } else if (menu === "D") {
+        let editIndex = parseInt(
+          prompt(`Masukkan no yang akan diubah: \n${showData(dbItem)}`)
+        );
+        let chooseIndex = parseInt(
+          prompt(`1.Ubah nama\n2.Ubah stok\n3.Ubah harga`)
+        );
+        if (chooseIndex === 1) {
+          let nameInput2 = prompt(`Masukkan nama yang akan diubah:`);
+          dbItem[editIndex - 1].name = nameInput2;
+        } else if (chooseIndex === 2) {
+          let stockInput2 = parseInt(prompt("Masukkan stok barang yang baru:"));
+          dbItem[editIndex - 1].stock = stockInput2;
+        } else if (chooseIndex === 3) {
+          let priceInput2 = parseInt(
+            prompt("Masukkan harga barang yang baru:")
+          );
+          dbItem[editIndex - 1].price = priceInput2;
+        }
+        alert("Ubah data berhasil✅:\n" + showData(dbItem));
+      } else if (menu === "E") {
+        let yes = confirm("Kembali ke menu");
+        if (!yes) {
+          break;
+        }
+      }
+
+      if (menu === "A" || menu === "B" || menu === "C" || menu === "D") {
+        let yes = confirm("Kembali ke menu");
+        if (!yes) {
+          break;
+        }
+      }
+    }
+  </script>
+</html>
