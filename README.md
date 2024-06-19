@@ -2,6 +2,6 @@
 <br/>
 Programming Fundamental
 <br/>
-Object Oriented Programming
+Object Oriented Programming (OOP)
 
 Simple Data Stock using alert in HTML Javascript
