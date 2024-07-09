@@ -1,6 +1,6 @@
 <b>Modul 1 Purwadhika Digital Technology School</b>
 <br/>
-Programming Fundamentals
+Programming Fundamentals.
 <br/>
 Object Oriented Programming (OOP)
 
